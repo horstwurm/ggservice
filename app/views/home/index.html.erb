@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="jumbotron">
+        <div class="md-col-4">
+            <div class="panel header">
+              <h1>Nettolohnberechnung</h1>
+            </div>
+         <div class="panel">
+            <%= form_tag "/home/index", :html => {:class => "form-inline"} do %>
+              <div class="form-group">
+                  <b>Nachname (Feld leer lassen, wenn neu)</b>
+                  <%= text_field_tag "name", "", class:"form-control" %>
+                  <b>Passwort (nur wenn Namen angegeben)</b>
+                  <%= password_field_tag "pw", "", class:"form-control" %>
+                  <br>
+                  <%= submit_tag "Anmelden", class:"btn btn-lg btn-primary"  %>
+                  <br><br>
+                  <%= @message %>
+              </div>
+            <% end %>
+        </div>
+    </div>
+</div>

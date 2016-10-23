@@ -1,0 +1,53 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <p id="notice"><%= notice %></p>
+    
+    <div class="col-md-12">
+      <div class="panel">
+        
+        <%= link_to new_tax_path do %>
+          <i class="btn btn-primary btn-lg glyphicon glyphicon-plus"> Neue Berechnung</i>
+        <% end %>
+        <%= link_to home_index_path do %>
+          <i class="btn btn-primary btn-lg glyphicon glyphicon-log-out"> Abmelden</i>
+        <% end %>
+  
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th colspan="2">Name</th>
+              <th>Bruttolohn CHF</th>
+              <th>Nettolohn CHF</th>
+              <th>Nettolohn €</th>
+              <th>Datum</th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% @taxes.each do |tax| %>
+              <tr>
+                <td><%= tax.user_name %></td>
+                <td><%= tax.user_vorname %></td>
+                <td><%= tax.brutto %></td>
+                <td><%= tax.netto %></td>
+                <td><%= tax.sum_fw %></td>
+                <td><%= tax.updated_at.strftime("%d.%m.%Y") %></td>
+                <td>
+                  <%= link_to edit_tax_path(tax) do %>
+      		          <i class="btn btn-primary btn-lg glyphicon glyphicon-pencil"> Ändern</i>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to tax, method: :delete, data: { confirm: 'Are you sure?' } do %>
+      		          <i class="btn btn-danger btn-lg glyphicon glyphicon-trash"> Löschen</i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  brutto: 1.5
+  qsteuer: 1.5
+  qsteuer_p: 1.5
+  suva: 1.5
+  suva_m_p: 1.5
+  suva_f_p: 1.5
+  ahv: 1.5
+  ahv_p: 1.5
+  alv: 1.5
+  alv_p: 1.5
+  pk: 1.5
+  pk_p: 1.5
+  sum: 1.5
+  sum_fw: 1.5
+  kurs: 1.5
+  steuer_fw: 1.5
+  soli_fw: 1.5
+  kirche_fw_float: MyString
+  anrechnung_q: 1.5
+  steuervoraus: 1.5
+  netto: 1.5
+
+two:
+  user_id: 1
+  brutto: 1.5
+  qsteuer: 1.5
+  qsteuer_p: 1.5
+  suva: 1.5
+  suva_m_p: 1.5
+  suva_f_p: 1.5
+  ahv: 1.5
+  ahv_p: 1.5
+  alv: 1.5
+  alv_p: 1.5
+  pk: 1.5
+  pk_p: 1.5
+  sum: 1.5
+  sum_fw: 1.5
+  kurs: 1.5
+  steuer_fw: 1.5
+  soli_fw: 1.5
+  kirche_fw_float: MyString
+  anrechnung_q: 1.5
+  steuervoraus: 1.5
+  netto: 1.5

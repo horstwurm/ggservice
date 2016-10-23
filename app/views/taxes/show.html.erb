@@ -1,0 +1,109 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tax.user_id %>
+</p>
+
+<p>
+  <strong>Brutto:</strong>
+  <%= @tax.brutto %>
+</p>
+
+<p>
+  <strong>Qsteuer:</strong>
+  <%= @tax.qsteuer %>
+</p>
+
+<p>
+  <strong>Qsteuer p:</strong>
+  <%= @tax.qsteuer_p %>
+</p>
+
+<p>
+  <strong>Suva:</strong>
+  <%= @tax.suva %>
+</p>
+
+<p>
+  <strong>Suva m p:</strong>
+  <%= @tax.suva_p %>
+</p>
+
+<p>
+  <strong>Ahv:</strong>
+  <%= @tax.ahv %>
+</p>
+
+<p>
+  <strong>Ahv p:</strong>
+  <%= @tax.ahv_p %>
+</p>
+
+<p>
+  <strong>Alv:</strong>
+  <%= @tax.alv %>
+</p>
+
+<p>
+  <strong>Alv p:</strong>
+  <%= @tax.alv_p %>
+</p>
+
+<p>
+  <strong>Pk:</strong>
+  <%= @tax.pk %>
+</p>
+
+<p>
+  <strong>Pk p:</strong>
+  <%= @tax.pk_p %>
+</p>
+
+<p>
+  <strong>Sum:</strong>
+  <%= @tax.sum %>
+</p>
+
+<p>
+  <strong>Sum fw:</strong>
+  <%= @tax.sum_fw %>
+</p>
+
+<p>
+  <strong>Kurs:</strong>
+  <%= @tax.kurs %>
+</p>
+
+<p>
+  <strong>Steuer fw:</strong>
+  <%= @tax.steuer_fw %>
+</p>
+
+<p>
+  <strong>Soli fw:</strong>
+  <%= @tax.soli_fw %>
+</p>
+
+<p>
+  <strong>Kirche fw float:</strong>
+  <%= @tax.kirche_fw %>
+</p>
+
+<p>
+  <strong>Anrechnung q:</strong>
+  <%= @tax.anrechnung_q %>
+</p>
+
+<p>
+  <strong>Steuervoraus:</strong>
+  <%= @tax.steuervoraus %>
+</p>
+
+<p>
+  <strong>Netto:</strong>
+  <%= @tax.netto %>
+</p>
+
+<%= link_to 'Edit', edit_tax_path(@tax) %> |
+<%= link_to 'Back', taxes_path %>

@@ -1,0 +1,2 @@
+json.extract! tax, :id, :user_id, :brutto, :qsteuer, :qsteuer_p, :suva, :suva_m_p, :suva_f_p, :ahv, :ahv_p, :alv, :alv_p, :pk, :pk_p, :sum, :sum_fw, :kurs, :steuer_fw, :soli_fw, :kirche_fw_float, :anrechnung_q, :steuervoraus, :netto, :created_at, :updated_at
+json.url tax_url(tax, format: :json)

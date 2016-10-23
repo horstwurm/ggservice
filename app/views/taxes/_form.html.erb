@@ -1,0 +1,228 @@
+<div class="container-fluid">
+      <%= form_for(@tax, :html => {:class => "form-inline"} ) do |f| %>
+        <% if @tax.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@tax.errors.count, "error") %> prohibited this tax from being saved:</h2>
+      
+            <ul>
+            <% @tax.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="col-md-12">
+          <div class="thumbnail align=center">
+            
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="panel header">
+                    <h2>Angaben zur Person</h2>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <b>Name Vorname Passwort</b><br>
+                <%= f.text_field :user_name, :autofocus => true, :style => "text-align: Left", class:"form-control" %>
+                <%= f.text_field :user_vorname, :style => "text-align: Left", class:"form-control" %>
+                <%= f.password_field :user_pw, :style => "text-align: Left", class:"form-control" %>
+                <br>
+                <%= f.radio_button :user_sex, "männlich", class:"form-control" %> männlich
+                <%= f.radio_button :user_sex, "weiblich", class:"form-control" %> weiblich
+                <br>
+                <%= f.submit "Speichern",  class:"btn btn-primary btn-lg"%>
+                <%= link_to taxes_path :name => @tax.user_name, :pw => @tax.user_pw do %>
+    		          <i class="btn btn-primary btn-lg glyphicon glyphicon-list"> Übersicht</i>
+                <% end %>
+                <%= link_to home_index_path do %>
+    		          <i class="btn btn-primary btn-lg glyphicon glyphicon-log-out"> Abmelden</i>
+                <% end %>
+                <br><br>
+                <cite>Die komplette Berechung unterliegt sehr vielen Annahmen und ist durch einen Steuerexperten zu überprüfen. Eine entsprechende Anpassung der Ansparung gem Vorauszahlungsbescheid nach dem Erhalt dessen ist sehr wichtig.</cite>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="thumbnail align=center">
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="panel header">
+                    <h2>Nettolohnberechnung</h2>
+                  </div>
+                </div>
+            </div>
+
+            <div class="field">
+              <%= f.hidden_field :user_id %>
+            </div>
+          
+            <div class="form-group">
+                <b>Bruttolohn</b><br>
+                <div class="input-group">
+                  <%= f.number_field :brutto, :value => number_with_precision(@tax.brutto, :precision => 2), :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">CHF</div>
+                </div>
+                <%= f.submit "Berechnen",  class:"btn btn-warning btn-lg"%>
+            </div>
+            <br><br>
+
+            <div class="form-group">
+                <b>Quellensteuer</b><br>
+                <div class="input-group">
+                  <%= f.number_field :qsteuer, :value => number_with_precision(@tax.qsteuer, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">CHF</div>
+                </div>
+                <div class="input-group">
+                  <%= f.number_field :qsteuer_p, :value => number_with_precision(@tax.qsteuer_p, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">%</div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <b>Unfallversicherung SUVA</b><br>
+                <div class="input-group">
+                  <%= f.number_field :suva, :value => number_with_precision(@tax.suva, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">CHF</div>
+                </div>
+                <div class="input-group">
+                  <%= f.number_field :suva_p, :value => number_with_precision(@tax.suva_p, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">%</div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <b>Gesetzliche Altervorsorge AHV</b><br>
+                <div class="input-group">
+                  <%= f.number_field :ahv, :value => number_with_precision(@tax.ahv, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">CHF</div>
+                </div>
+                <div class="input-group">
+                  <%= f.number_field :ahv_p, :value => number_with_precision(@tax.ahv_p, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">%</div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <b>Arbeitslosenversicherung ALV</b><br>
+                <div class="input-group">
+                  <%= f.number_field :alv, :value => number_with_precision(@tax.alv, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">CHF</div>
+                </div>
+                <div class="input-group">
+                  <%= f.number_field :alv_p, :value => number_with_precision(@tax.alv_p, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">%</div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <b>Betriebliche Altersvorsorge Pensionskasse</b><br>
+                <div class="input-group">
+                  <%= f.number_field :pk, :value => number_with_precision(@tax.pk, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">CHF</div>
+                </div>
+                <div class="input-group">
+                  <%= f.number_field :pk_p, :value => number_with_precision(@tax.pk_p, :precision => 2), :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">%</div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <b>Krankenversicherung</b><br>
+                <div class="input-group">
+                  <%= f.number_field :kv, :value => number_with_precision(@tax.kv, :precision => 2), :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">CHF</div>
+                </div>
+            </div><br>
+            <div class="form-group">
+                <b>Nettolohn</b><br>
+                <div class="input-group">
+                  <%= f.number_field :sum, :value => number_with_precision(@tax.sum, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">CHF</div>
+                </div>
+            </div>
+            <br><br>
+            <div class="form-group">
+                <b>Nettolohn in €</b><br>
+                <div class="input-group">
+                  <%= f.number_field :sum_fw, :value => number_with_precision(@tax.sum_fw, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">€</div>
+                </div>
+                <div class="input-group">
+                  <%= f.number_field :kurs, :value => number_with_precision(@tax.kurs, :precision => 2), :style => "text-align: Right", class:"form-control" %>
+                  <div class="input-group-addon">%</div>
+                </div>
+            </div>
+            <br><br>
+          </div>
+        </div>
+      
+        <div class="col-md-6">
+            <div class="thumbnail align=center">
+              
+              <div class="row">
+                  <div class="col-md-12">
+                    <div class="panel header">
+                      <h2>Nettolohnvergleich</h2>
+                    </div>
+                  </div>
+              </div>
+  
+              <div class="form-group">
+                  <b>Lohnsteuer</b><br>
+                  <div class="input-group">
+                    <%= f.number_field :steuer_fw, :value => number_with_precision(@tax.steuer_fw, :precision => 2), :style => "text-align: Right", class:"form-control" %>
+                    <div class="input-group-addon">€</div>
+                  </div>
+                <%= f.submit "Berechnen",  class:"btn btn-warning btn-lg"%>
+              </div>
+              <br>
+              <div class="form-group">
+                  <b>Solidaritätszuschlag</b><br>
+                  <div class="input-group">
+                    <%= f.number_field :soli_fw, :value => number_with_precision(@tax.soli_fw, :precision => 2), :style => "text-align: Right", class:"form-control" %>
+                    <div class="input-group-addon">€</div>
+                  </div>
+              </div>
+              <br>
+              <div class="form-group">
+                  <b>Kirchensteuer</b><br>
+                  <div class="input-group">
+                    <%= f.number_field :kirche_fw, :value => number_with_precision(@tax.kirche_fw, :precision => 2), :style => "text-align: Right", class:"form-control" %>
+                    <div class="input-group-addon">€</div>
+                  </div>
+              </div>
+              <br>
+              <div class="form-group">
+                  <b>Quellensteuer Anrechnung</b><br>
+                  <div class="input-group">
+                    <%= f.number_field :anrechnung_q, :value => number_with_precision(@tax.anrechnung_q, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                    <div class="input-group-addon">€</div>
+                  </div>
+              </div>
+              <br>
+              <div class="form-group">
+                  <b>Steuervorauszahlung (Näherungswert)</b><br>
+                  <div class="input-group">
+                    <%= f.number_field :steuervoraus, :value => number_with_precision(@tax.steuervoraus, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                    <div class="input-group-addon">€</div>
+                  </div>
+              </div>
+              <br>
+              <div class="form-group">
+                  <b>Nettogehalt (Näherungswert)</b><br>
+                  <div class="input-group">
+                    <%= f.number_field :netto, :value => number_with_precision(@tax.netto, :precision => 2), :readonly => true, :style => "text-align: Right", class:"form-control" %>
+                    <div class="input-group-addon">€</div>
+                  </div>
+              </div>
+              <br>
+
+            </div>
+        </div>
+        
+      
+      <% end %>
+</div>
