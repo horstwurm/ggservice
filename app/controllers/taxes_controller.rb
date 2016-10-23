@@ -7,7 +7,10 @@ class TaxesController < ApplicationController
     if params[:name] == "tkbtkb"
       @taxes = Tax.all.order(:user_name)
     else
-      @taxes = Tax.where('user_name=? and user_pw=?', params[:name], params[:pw])
+      @taxes = Tax.where('user_name=? and user_vorname=? and user_pw=?', params[:name], params[:vorname], params[:pw])
+      @user_name = params[:name]
+      @user_vorname = params[:vorname]
+      @user_pw = params[:pw]
     end
   end
 
@@ -19,6 +22,9 @@ class TaxesController < ApplicationController
   # GET /taxes/new
   def new
       @tax = Tax.new
+      @tax.user_name = params[:name]
+      @tax.user_vorname = params[:vorname]
+      @tax.user_pw = params[:pw]
       
       if !params[:do_nothing]
         @tax.qsteuer_p = 4.5
@@ -67,7 +73,7 @@ class TaxesController < ApplicationController
     respond_to do |format|
       if @tax.save
         if params[:commit] == "Speichern"
-          format.html { redirect_to taxes_path :name => @tax.user_name, :pw => @tax.user_pw, notice: 'Tax was successfully created.' }
+          format.html { redirect_to taxes_path :name => @tax.user_name, :vorname => @tax.user_vorname, :pw => @tax.user_pw, notice: 'Tax was successfully created.' }
           format.json { render :show, status: :created, location: @tax }
         end
         if params[:commit] == "Berechnen"
@@ -87,7 +93,7 @@ class TaxesController < ApplicationController
     respond_to do |format|
       if @tax.update(tax_params)
         if params[:commit] == "Speichern"
-          format.html { redirect_to taxes_path :name => @tax.user_name, :pw => @tax.user_pw, notice: 'Tax was successfully updated.' }
+          format.html { redirect_to taxes_path :name => @tax.user_name, :vorname => @tax.user_vorname, :pw => @tax.user_pw, notice: 'Tax was successfully updated.' }
           format.json { render :show, status: :ok, location: @tax }
         end
         if params[:commit] == "Berechnen"
@@ -105,10 +111,11 @@ class TaxesController < ApplicationController
   # DELETE /taxes/1.json
   def destroy
     @name = @tax.user_name
+    @vorname = @tax.user_vorname
     @pw = @tax.user_pw
     @tax.destroy
     respond_to do |format|
-      format.html { redirect_to taxes_url :name => @name, :pw => @pw, notice: 'Tax was successfully destroyed.' }
+      format.html { redirect_to taxes_url :name => @name, :vorname => @vorname, :pw => @pw, notice: 'Tax was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

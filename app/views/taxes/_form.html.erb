@@ -24,16 +24,16 @@
             </div>
             
             <div class="form-group">
-                <b>Name Vorname Passwort</b><br>
-                <%= f.text_field :user_name, :autofocus => true, :style => "text-align: Left", class:"form-control" %>
-                <%= f.text_field :user_vorname, :style => "text-align: Left", class:"form-control" %>
-                <%= f.password_field :user_pw, :style => "text-align: Left", class:"form-control" %>
+                <b>Name Vorname</b><br>
+                <%= f.text_field :user_name, :readonly => true, :style => "text-align: Left", class:"form-control" %>
+                <%= f.text_field :user_vorname,  :readonly => true, :style => "text-align: Left", class:"form-control" %>
+                <%= f.hidden_field :user_pw %>
                 <br>
                 <%= f.radio_button :user_sex, "männlich", class:"form-control" %> männlich
                 <%= f.radio_button :user_sex, "weiblich", class:"form-control" %> weiblich
                 <br>
                 <%= f.submit "Speichern",  class:"btn btn-primary btn-lg"%>
-                <%= link_to taxes_path :name => @tax.user_name, :pw => @tax.user_pw do %>
+                <%= link_to taxes_path :name => @tax.user_name, :vorname => @tax.user_vorname, :pw => @tax.user_pw do %>
     		          <i class="btn btn-primary btn-lg glyphicon glyphicon-list"> Übersicht</i>
                 <% end %>
                 <%= link_to home_index_path do %>
@@ -62,7 +62,7 @@
             <div class="form-group">
                 <b>Bruttolohn</b><br>
                 <div class="input-group">
-                  <%= f.number_field :brutto, :value => number_with_precision(@tax.brutto, :precision => 2), :style => "text-align: Right", class:"form-control" %>
+                  <%= f.number_field :brutto, :value => number_with_precision(@tax.brutto, :precision => 2), :autofocus => true, :style => "text-align: Right", class:"form-control" %>
                   <div class="input-group-addon">CHF</div>
                 </div>
                 <%= f.submit "Berechnen",  class:"btn btn-warning btn-lg"%>

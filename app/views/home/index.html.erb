@@ -7,9 +7,11 @@
          <div class="panel">
             <%= form_tag "/home/index", :html => {:class => "form-inline"} do %>
               <div class="form-group">
-                  <b>Nachname (Feld leer lassen, wenn neu)</b>
+                  <b>Nachname</b>
                   <%= text_field_tag "name", "", class:"form-control" %>
-                  <b>Passwort (nur wenn Namen angegeben)</b>
+                  <b>Vorname</b>
+                  <%= text_field_tag "vorname", "", class:"form-control" %>
+                  <b>Passwort</b>
                   <%= password_field_tag "pw", "", class:"form-control" %>
                   <br>
                   <%= submit_tag "Anmelden", class:"btn btn-lg btn-primary"  %>

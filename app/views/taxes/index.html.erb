@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <div class="panel">
         
-        <%= link_to new_tax_path do %>
+        <%= link_to new_tax_path :name => @user_name, :vorname => @user_vorname, :pw => @user_pw do %>
           <i class="btn btn-primary btn-lg glyphicon glyphicon-plus"> Neue Berechnung</i>
         <% end %>
         <%= link_to home_index_path do %>
